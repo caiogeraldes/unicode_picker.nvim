@@ -18,16 +18,16 @@ return function()
 			if string.sub(line, 1, 2) == "	=" and not control then
 				-- Add aliases to the last character definition
 				local c = table.remove(characters, #characters)
-				table.insert(c, string.sub(line, 5))
+				table.insert(c, string.sub(line, 6))
 				table.insert(characters, c)
 			elseif string.match(line, "^[0-9]+") then
 				-- Start of a new character definition
-				local code = utf8.char(tonumber(string.sub(line, 1, 5), 16))
+				local code = utf8.char(tonumber(string.sub(line, 1, 6), 16))
 				local name = string.sub(line, 6)
 
 				-- Remove control characters
 				if name ~= "<control>" then
-					table.insert(characters, { code, string.sub(line, 1, 5), name })
+					table.insert(characters, { code, string.sub(line, 1, 6), name })
 					control = false
 				else
 					control = true
